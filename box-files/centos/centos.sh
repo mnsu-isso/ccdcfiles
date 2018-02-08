@@ -22,6 +22,10 @@ passwd -l news
 passwd -l administrator
 passwd -l tomcat
 
+#Disabling mysql and tomcat5 shells (they don't need it)
+sed -i -e 's%var/lib/mysql:/bin/bash%var/lib%mysql:/sbin/nologin%g' /etc/passwd
+sed -i -e 's%tomcat5:/bin/sh%tomcat5:/sbin/nologin%g' /etc/passwd
+
 #Disabling services
 curl -k 'https://raw.githubusercontent.com/mnsu-isso/ccdcfiles/master/box-files/centos/services.sh' > services.sh
 bash services.sh
@@ -144,5 +148,9 @@ useradd -p "changeme" admin
 #Check if these are necessary
 #chown -R root:root /var/www/html
 #chown -R root:root /var/www/usage
+
+#Downloading and placing nmap in downloadable location
+wget --no-check-certificate https://nmap.org/dist/nmap-7.60-setup.exe
+mv nmap-7.60-setup.exe /var/www/html
 
 echo "Run artillery in separate window"
