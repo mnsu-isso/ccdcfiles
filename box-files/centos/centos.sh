@@ -40,6 +40,13 @@ rpm -e proftpd*
 rpm -e samba*
 yum -y erase squid
 yum -y erase selinux-policy-targeted
+rpm -e imagemagick
+rpm -e dovecot
+rpm -e evolution
+rpm -e gimp
+rpm -e openoffice
+rpm -e portmap
+rpm -e rhythmbox
 
 #Wiping all crontabs
 for user in $(cut -f1 -d: /etc/passwd); do crontab -u $user -r; done
@@ -93,15 +100,6 @@ echo 'kernel.dmesg_restrict = 1' >> /etc/sysctl.conf
 echo 'kernel.randomize_va_space = 2' >> /etc/sysctl.conf
 sysctl -p
 
-#Removing unnecessary programs
-rpm -e imagemagick
-rpm -e dovecot
-rpm -e evolution
-rpm -e gimp
-rpm -e openoffice
-rpm -e portmap
-rpm -e rhythmbox
-
 #Updating apache and tomcat
 yum -y install apache*
 yum -y install tomcat5
@@ -140,13 +138,13 @@ chattr +i /usr/bin/netcat
 useradd -p "changeme" admin
 
 # Install ossec
-bash centos_ossec.sh
+#bash centos_ossec.sh
 
 # Setting the passwd and shadow files to be immutable. (No new users can be created, and no passwords can be changed)
 
 # Wait on chattring these files until after ossec is installed
-#chattr +i /etc/passwd
-#chattr +i /etc/shadow
+chattr +i /etc/passwd
+chattr +i /etc/shadow
 
 #Check if these are necessary
 #chown -R root:root /var/www/html
