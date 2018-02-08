@@ -139,6 +139,9 @@ chattr +i /usr/bin/netcat
 #Adding "honeypot" user admin
 useradd -p "changeme" admin
 
+# Install ossec
+bash centos_ossec.sh
+
 # Setting the passwd and shadow files to be immutable. (No new users can be created, and no passwords can be changed)
 
 # Wait on chattring these files until after ossec is installed
