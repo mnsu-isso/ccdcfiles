@@ -138,7 +138,7 @@ chattr +i /usr/bin/netcat
 useradd -p "changeme" admin
 
 # Install ossec
-bash centos_ossec.sh
+#bash centos_ossec.sh
 
 # Setting the passwd and shadow files to be immutable. (No new users can be created, and no passwords can be changed)
 
