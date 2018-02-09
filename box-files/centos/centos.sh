@@ -40,13 +40,12 @@ rpm -e proftpd*
 rpm -e samba*
 yum -y erase squid
 yum -y erase selinux-policy-targeted
-rpm -e imagemagick
-rpm -e dovecot
-rpm -e evolution
-rpm -e gimp
-rpm -e openoffice
-rpm -e portmap
-rpm -e rhythmbox
+#rpm -e dovecot
+#rpm -e evolution
+#rpm -e gimp
+#rpm -e openoffice
+#rpm -e portmap
+#rpm -e rhythmbox
 
 #Wiping all crontabs
 for user in $(cut -f1 -d: /etc/passwd); do crontab -u $user -r; done
@@ -59,7 +58,7 @@ echo 'change Ubuntu mysql db'
 wget --no-check-certificate https://raw.githubusercontent.com/mnsu-isso/ccdcfiles/master/box-files/centos/epel-release-5-4.noarch.rpm
 
 #wget http://download.fedoraproject.org/pub/epel/5/i386/epel-release-5-4.noarch.rpm
-curl -k https://raw.githubusercontent.com/mnsu-isso/ccdcfiles/master/box-files/centos/puias-computational.repo
+curl -k https://raw.githubusercontent.com/mnsu-isso/ccdcfiles/master/box-files/centos/puias-computational.repo > puias-computational.repo
 cp puias-computational.repo /etc/yum.repos.d/puias-computational.repo
 
 rpm -ivh ./epel-release-5-4.noarch.rpm
