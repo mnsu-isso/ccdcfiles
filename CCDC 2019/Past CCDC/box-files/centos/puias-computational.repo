@@ -1,0 +1,5 @@
+[puias-computational]
+name=PUIAS Computational
+baseurl=http://springdale.math.ias.edu/data/puias/computational/5/x86_64/
+enabled=1
+gpgcheck=0

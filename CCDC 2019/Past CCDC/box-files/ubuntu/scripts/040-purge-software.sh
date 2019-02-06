@@ -1,0 +1,1 @@
+sudo apt-get purge open-iscsi apache2

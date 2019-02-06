@@ -1,0 +1,8 @@
+install nethogs (shows all processes using bandwidth)
+install tcptrack (watches each connection)
+find way to watch for changes in filesystem (can just show changes, we can use that to determine if we're hacked)
+automate snort install and setup (that's gonna suck)
+look into Linux containers for services
+limit amount of processes
+kick user after x attempts to log in
+
