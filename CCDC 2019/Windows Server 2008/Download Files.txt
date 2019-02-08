@@ -1,0 +1,16 @@
+$WebClient = New-Object System.Net.WebClient
+$WebClient.DownloadFile("https://is.gd/uOyyDu","C:\Users\Administrator\Downloads\Autoruns.zip")
+
+$WebClient.DownloadFile("https://is.gd/Midaz0","C:\Users\Administrator\Downloads\DisableSMB.txt")
+
+$WebClient.DownloadFile("https://is.gd/tfs5Jk","C:\Users\Administrator\Downloads\FFInstaller.exe")
+
+$WebClient.DownloadFile("https://is.gd/DDioly","C:\Users\Administrator\Downloads\MSEInstaller.exe")
+
+$WebClient.DownloadFile("https://is.gd/tDM84L","C:\Users\Administrator\Downloads\KB958644.msu")
+
+$WebClient.DownloadFile("https://is.gd/Eha2Bw","C:\Users\Administrator\Downloads\KB2871997.msu")
+
+$WebClient.DownloadFile("https://is.gd/eiU0MR","C:\Users\Administrator\Downloads\ESETInstaller.exe")
+
+$WebClient.DownloadFile("https://is.gd/mnUSMP","C:\Users\Administrator\Downloads\KB3177467.msu")
